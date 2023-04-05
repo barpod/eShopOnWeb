@@ -84,7 +84,7 @@ jobs:
           name: .net-app
 
       - name: Deploy to Primary Azure Web App
-        id: deploy-to-webapp
+        id: deploy-to-primary-webapp
         uses: azure/webapps-deploy@v2
         with:
           app-name: ${{ env.AZURE_WEBAPP_NAME }}
@@ -92,7 +92,7 @@ jobs:
           package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
 
       - name: Deploy to Secondary Azure Web App
-        id: deploy-to-webapp
+        id: deploy-to-secondary-webapp
         uses: azure/webapps-deploy@v2
         with:
           app-name: ${{ env.SECONDARY_AZURE_WEBAPP_NAME }}
