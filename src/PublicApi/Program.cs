@@ -75,7 +75,11 @@ builder.Services.AddCors(options =>
     options.AddPolicy(name: CORS_POLICY,
         corsPolicyBuilder =>
         {
-            corsPolicyBuilder.WithOrigins(baseUrlConfig!.WebBase.Replace("host.docker.internal", "localhost").TrimEnd('/'));
+            corsPolicyBuilder.WithOrigins(
+                baseUrlConfig!.WebBase.Replace("host.docker.internal", "localhost").TrimEnd('/'),
+                "https://eshoponweb-secondary-app-service.azurewebsites.net",
+                "https://eshoponweb-primary-app-service-staging.azurewebsites.net",
+                "https://eshoponweb-primary-app-service.azurewebsites.net" );
             corsPolicyBuilder.AllowAnyMethod();
             corsPolicyBuilder.AllowAnyHeader();
         });
