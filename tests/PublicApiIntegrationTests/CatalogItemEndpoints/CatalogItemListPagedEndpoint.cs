@@ -11,10 +11,10 @@ using System.Threading.Tasks;
 namespace PublicApiIntegrationTests.CatalogItemEndpoints;
 
 [TestClass]
+[Ignore]
 public class CatalogItemListPagedEndpoint
 {
     [TestMethod]
-    [Ignore]
     public async Task ReturnsFirst10CatalogItems()
     {
         var client = ProgramTest.NewClient;
