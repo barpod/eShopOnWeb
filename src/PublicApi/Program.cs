@@ -87,6 +87,8 @@ builder.Services.AddCors(options =>
         });
 });
 
+throw new Exception ("Cannot move further 2");
+
 builder.Services.AddControllers();
 builder.Services.AddAutoMapper(typeof(MappingProfile).Assembly);
 builder.Configuration.AddEnvironmentVariables();
