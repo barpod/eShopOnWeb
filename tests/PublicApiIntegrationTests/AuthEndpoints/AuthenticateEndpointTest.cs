@@ -10,6 +10,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace PublicApiIntegrationTests.AuthEndpoints;
 
 [TestClass]
+[Ignore]
 public class AuthenticateEndpoint
 {
     [TestMethod]

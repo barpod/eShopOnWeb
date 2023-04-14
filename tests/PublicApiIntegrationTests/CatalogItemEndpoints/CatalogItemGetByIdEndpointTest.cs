@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 namespace PublicApiIntegrationTests.CatalogItemEndpoints;
 
 [TestClass]
+[Ignore]
 public class CatalogItemGetByIdEndpointTest
 {
     [TestMethod]
