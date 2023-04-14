@@ -52,6 +52,9 @@ builder.Services.Configure<BaseUrlConfiguration>(configSection);
 var baseUrlConfig = configSection.Get<BaseUrlConfiguration>();
 
 throw new Exception ("Cannot move further 2");
+
+public partial class Program { }
+
 // builder.Services.AddMemoryCache();
 
 // var key = Encoding.ASCII.GetBytes(AuthorizationConstants.JWT_SECRET_KEY);
@@ -186,4 +189,3 @@ throw new Exception ("Cannot move further 2");
 // app.Run();
 
 
-// public partial class Program { }
