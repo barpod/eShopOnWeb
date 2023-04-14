@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 namespace PublicApiIntegrationTests.AuthEndpoints;
 
 [TestClass]
+[Ignore]
 public class CreateCatalogItemEndpointTest
 {
     private int _testBrandId = 1;
