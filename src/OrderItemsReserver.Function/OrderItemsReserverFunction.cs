@@ -15,10 +15,9 @@ public class OrderItemsReserverFunction
     }
 
     [Function("OrderItemsReserver")]
-    public HttpResponseData Run([HttpTrigger(AuthorizationLevel.Function, "get", 
-        Route = "OrderItemsReserver")] HttpRequestData req, string startDate, string endDate)
+    public HttpResponseData Run([HttpTrigger(AuthorizationLevel.Function, "get")] HttpRequestData req)
     {
-        _logger.LogInformation($"C# HTTP trigger function processed a request: {startDate} - {endDate}.");
+        //_logger.LogInformation($"C# HTTP trigger function processed a request: {startDate} - {endDate}.");
 
         //var httpClient = new HttpClient();
         //var start = DateTime.Parse(startDate);
