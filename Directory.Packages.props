@@ -46,6 +46,9 @@
     <PackageVersion Include="Swashbuckle.AspNetCore" Version="6.5.0" />
     <PackageVersion Include="Swashbuckle.AspNetCore.SwaggerUI" Version="6.5.0" />
     <PackageVersion Include="Swashbuckle.AspNetCore.Annotations" Version="6.5.0" />
+    <PackageVersion Include="Microsoft.Azure.Functions.Worker.Extensions.Http" Version="3.0.13" />
+    <PackageVersion Include="Microsoft.Azure.Functions.Worker.Sdk" Version="1.9.0" OutputItemType="Analyzer" />
+    <PackageVersion Include="Microsoft.Azure.Functions.Worker" Version="1.13.0" />
     <!-- Test -->
     <PackageVersion Include="Microsoft.AspNetCore.Mvc.Testing" Version="7.0.4" />
     <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.5.0" />
