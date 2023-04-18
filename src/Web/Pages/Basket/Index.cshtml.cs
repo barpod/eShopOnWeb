@@ -44,6 +44,7 @@ public class IndexModel : PageModel
         _appLogger.LogInformation($"Item from repository: {item}");
         if (item == null)
         {
+            _appLogger.LogWarning("No item could be retrieved from repository");
             return RedirectToPage("/Index");
         }
 
