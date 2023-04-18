@@ -15,7 +15,7 @@ public static class OrderItemsReserverFunction
     [FunctionName("OrderItemsReserver")]
     public static async Task<IActionResult> Run(
         [HttpTrigger(AuthorizationLevel.Function, "post", Route = "OrderItemsReserver/{orderId}")] HttpRequest req,
-        [Blob("order-reservation-container/{orderId}", FileAccess.Write)] Stream orderIdBlob,
+        [Blob("order-reservation-container/order-{orderId}.json", FileAccess.Write)] Stream orderIdBlob,
         string orderId,
         ILogger log)
     {
