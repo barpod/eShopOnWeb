@@ -13,14 +13,17 @@ public class IndexModel : PageModel
     private readonly IBasketService _basketService;
     private readonly IBasketViewModelService _basketViewModelService;
     private readonly IRepository<CatalogItem> _itemRepository;
+    private readonly ApplicationCore.Interfaces.IAppLogger<IndexModel> _appLogger;
 
     public IndexModel(IBasketService basketService,
         IBasketViewModelService basketViewModelService,
-        IRepository<CatalogItem> itemRepository)
+        IRepository<CatalogItem> itemRepository,
+        IAppLogger<IndexModel> appLogger)
     {
         _basketService = basketService;
         _basketViewModelService = basketViewModelService;
         _itemRepository = itemRepository;
+        _appLogger = appLogger;
     }
 
     public BasketViewModel BasketModel { get; set; } = new BasketViewModel();
@@ -38,6 +41,7 @@ public class IndexModel : PageModel
         }
 
         var item = await _itemRepository.GetByIdAsync(productDetails.Id);
+        _appLogger.LogInformation($"Item from repository: {item}");
         if (item == null)
         {
             return RedirectToPage("/Index");
