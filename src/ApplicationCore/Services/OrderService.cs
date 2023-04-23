@@ -55,16 +55,16 @@ public class OrderService : IOrderService
 
         var order = new Order(basket.BuyerId, shippingAddress, items);
 
-        using(var client = new HttpClient())
-        {
-            client.BaseAddress = new System.Uri("https://eshoponweb-orderitemreserver-function-app.azurewebsites.net");
-            client.DefaultRequestHeaders.Add("x-functions-key",_configuration["master_order_item_reserver_key"]);
-            var json = JsonConvert.SerializeObject(order);
-            var data = new StringContent(json, Encoding.UTF8, "application/json");
-            var blobExtensionKey = _configuration["blob_extension_key"];
-            var requestUri = $"api/OrderItemsReserver/{order.Id}?code={blobExtensionKey}&clientId=blobs_extension";
-            await client.PostAsync(requestUri, data);
-        }
+        // using(var client = new HttpClient())
+        // {
+        //     client.BaseAddress = new System.Uri("https://eshoponweb-orderitemreserver-function-app.azurewebsites.net");
+        //     client.DefaultRequestHeaders.Add("x-functions-key",_configuration["master_order_item_reserver_key"]);
+        //     var json = JsonConvert.SerializeObject(order);
+        //     var data = new StringContent(json, Encoding.UTF8, "application/json");
+        //     var blobExtensionKey = _configuration["blob_extension_key"];
+        //     var requestUri = $"api/OrderItemsReserver/{order.Id}?code={blobExtensionKey}&clientId=blobs_extension";
+        //     await client.PostAsync(requestUri, data);
+        // }
 
         await _orderRepository.AddAsync(order);
     }
