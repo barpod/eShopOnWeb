@@ -15,7 +15,7 @@ public static class OrderItemsReserverFunction
     public static async Task<IActionResult> Run(
         [HttpTrigger(AuthorizationLevel.Function, "post", Route = "OrderItemsReserver/{orderId}")] HttpRequest req,
         [CosmosDB(
-                databaseName: "ToDoItems",
+                databaseName: "cosmosdbsql",
                 containerName: "cosmosdbsqlcontainer",
                 Connection = "CosmosDBConnection")]IAsyncCollector<dynamic> documentsOut,
         string orderId,
