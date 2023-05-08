@@ -120,33 +120,33 @@ jobs:
   #         app-name: ${{ env.PUBLIC_API_AZURE_WEBAPP_NAME }}
   #         package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
 
-  build-and-deploy-function-app:
-    runs-on: ubuntu-latest # For Linux, use ubuntu-latest
-    environment: 'Development'
-    steps:
-    - name: 'Checkout GitHub Action'
-      uses: actions/checkout@v3
+  # build-and-deploy-function-app:
+  #   runs-on: ubuntu-latest # For Linux, use ubuntu-latest
+  #   environment: 'Development'
+  #   steps:
+  #   - name: 'Checkout GitHub Action'
+  #     uses: actions/checkout@v3
 
-    - name: "Login to Azure"
-      uses: azure/login@v1
-      with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
+  #   - name: "Login to Azure"
+  #     uses: azure/login@v1
+  #     with:
+  #       creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-    - name: Setup DotNet 6.0 Environment
-      uses: actions/setup-dotnet@v3
-      with:
-        dotnet-version: 6.0
+  #   - name: Setup DotNet 6.0 Environment
+  #     uses: actions/setup-dotnet@v3
+  #     with:
+  #       dotnet-version: 6.0
 
-    - name: 'Resolve Project Dependencies Using Dotnet'
-      shell: bash # For Linux, use bash
-      run: |
-        pushd './${{ env.AZURE_WEBAPP_PACKAGE_PATH }}'
-        dotnet build src/OrderItemsReserver.Function/OrderItemsReserver.Function.csproj --configuration Release --output ./output
-        popd
+  #   - name: 'Resolve Project Dependencies Using Dotnet'
+  #     shell: bash # For Linux, use bash
+  #     run: |
+  #       pushd './${{ env.AZURE_WEBAPP_PACKAGE_PATH }}'
+  #       dotnet build src/OrderItemsReserver.Function/OrderItemsReserver.Function.csproj --configuration Release --output ./output
+  #       popd
 
-    - name: 'Run Azure Functions Action'
-      uses: Azure/functions-action@v1
-      id: fa
-      with:
-        app-name: ${{ env.ORDER_RESERVER_SERVICE_FUNCTION_APP }}
-        package: '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}/output'
+  #   - name: 'Run Azure Functions Action'
+  #     uses: Azure/functions-action@v1
+  #     id: fa
+  #     with:
+  #       app-name: ${{ env.ORDER_RESERVER_SERVICE_FUNCTION_APP }}
+  #       package: '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}/output'
