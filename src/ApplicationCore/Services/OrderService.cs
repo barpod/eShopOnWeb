@@ -10,6 +10,7 @@ using Microsoft.eShopWeb.ApplicationCore.Interfaces;
 using Microsoft.eShopWeb.ApplicationCore.Specifications;
 using Newtonsoft.Json;
 using Microsoft.Extensions.Configuration;
+using Microsoft.eShopWeb.Web.Services;
 
 namespace Microsoft.eShopWeb.ApplicationCore.Services;
 
@@ -18,6 +19,7 @@ public class OrderService : IOrderService
     private readonly IRepository<Order> _orderRepository;
     private readonly IUriComposer _uriComposer;
     private readonly IConfiguration _configuration;
+    private readonly IServiceBusQueueSender _serviceBusQueueSender;
     private readonly IRepository<Basket> _basketRepository;
     private readonly IRepository<CatalogItem> _itemRepository;
 
@@ -25,11 +27,13 @@ public class OrderService : IOrderService
         IRepository<CatalogItem> itemRepository,
         IRepository<Order> orderRepository,
         IUriComposer uriComposer,
-        IConfiguration configuration)
+        IConfiguration configuration,
+        IServiceBusQueueSender serviceBusQueueSender)
     {
         _orderRepository = orderRepository;
         _uriComposer = uriComposer;
         _configuration = configuration;
+        _serviceBusQueueSender = serviceBusQueueSender;
         _basketRepository = basketRepository;
         _itemRepository = itemRepository;
     }
@@ -54,6 +58,9 @@ public class OrderService : IOrderService
         }).ToList();
 
         var order = new Order(basket.BuyerId, shippingAddress, items);
+
+        var json = JsonConvert.SerializeObject(order);
+        _serviceBusQueueSender.Send(json);
 
         // using(var client = new HttpClient())
         // {
